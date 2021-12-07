@@ -1,0 +1,1537 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Sun Jun 06 22:06:47 2021
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	16F877A
+     2                           	opt	pw 120
+     3                           	opt	flic
+     4                           	psect	strings,global,class=STRING,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	maintext,global,class=CODE,split=1,delta=2
+    11                           	psect	text1,local,class=CODE,merge=1,delta=2
+    12                           	psect	text2,local,class=CODE,merge=1,delta=2
+    13                           	psect	text3,local,class=CODE,merge=1,delta=2
+    14                           	psect	text4,local,class=CODE,merge=1,delta=2
+    15                           	psect	text5,local,class=CODE,merge=1,delta=2
+    16                           	psect	text6,local,class=CODE,merge=1,delta=2
+    17                           	psect	text7,local,class=CODE,merge=1,delta=2
+    18                           	dabs	1,0x7E,2
+    19  0000                     
+    20                           ; Version 2.10
+    21                           ; Generated 31/07/2019 GMT
+    22                           ; 
+    23                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    24                           ; All rights reserved.
+    25                           ; 
+    26                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    27                           ; 
+    28                           ; Redistribution and use in source and binary forms, with or without modification, are
+    29                           ; permitted provided that the following conditions are met:
+    30                           ; 
+    31                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    32                           ;        conditions and the following disclaimer.
+    33                           ; 
+    34                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    35                           ;        of conditions and the following disclaimer in the documentation and/or other
+    36                           ;        materials provided with the distribution.
+    37                           ; 
+    38                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    39                           ;        software without specific prior written permission.
+    40                           ; 
+    41                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    42                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    43                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    44                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    45                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    46                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    47                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    48                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    49                           ; 
+    50                           ; 
+    51                           ; Code-generator required, PIC16F877A Definitions
+    52                           ; 
+    53                           ; SFR Addresses
+    54  0000                     	;# 
+    55  0001                     	;# 
+    56  0002                     	;# 
+    57  0003                     	;# 
+    58  0004                     	;# 
+    59  0005                     	;# 
+    60  0006                     	;# 
+    61  0007                     	;# 
+    62  0008                     	;# 
+    63  0009                     	;# 
+    64  000A                     	;# 
+    65  000B                     	;# 
+    66  000C                     	;# 
+    67  000D                     	;# 
+    68  000E                     	;# 
+    69  000E                     	;# 
+    70  000F                     	;# 
+    71  0010                     	;# 
+    72  0011                     	;# 
+    73  0012                     	;# 
+    74  0013                     	;# 
+    75  0014                     	;# 
+    76  0015                     	;# 
+    77  0015                     	;# 
+    78  0016                     	;# 
+    79  0017                     	;# 
+    80  0018                     	;# 
+    81  0019                     	;# 
+    82  001A                     	;# 
+    83  001B                     	;# 
+    84  001B                     	;# 
+    85  001C                     	;# 
+    86  001D                     	;# 
+    87  001E                     	;# 
+    88  001F                     	;# 
+    89  0081                     	;# 
+    90  0085                     	;# 
+    91  0086                     	;# 
+    92  0087                     	;# 
+    93  0088                     	;# 
+    94  0089                     	;# 
+    95  008C                     	;# 
+    96  008D                     	;# 
+    97  008E                     	;# 
+    98  0091                     	;# 
+    99  0092                     	;# 
+   100  0093                     	;# 
+   101  0094                     	;# 
+   102  0098                     	;# 
+   103  0099                     	;# 
+   104  009C                     	;# 
+   105  009D                     	;# 
+   106  009E                     	;# 
+   107  009F                     	;# 
+   108  010C                     	;# 
+   109  010D                     	;# 
+   110  010E                     	;# 
+   111  010F                     	;# 
+   112  018C                     	;# 
+   113  018D                     	;# 
+   114  0000                     	;# 
+   115  0001                     	;# 
+   116  0002                     	;# 
+   117  0003                     	;# 
+   118  0004                     	;# 
+   119  0005                     	;# 
+   120  0006                     	;# 
+   121  0007                     	;# 
+   122  0008                     	;# 
+   123  0009                     	;# 
+   124  000A                     	;# 
+   125  000B                     	;# 
+   126  000C                     	;# 
+   127  000D                     	;# 
+   128  000E                     	;# 
+   129  000E                     	;# 
+   130  000F                     	;# 
+   131  0010                     	;# 
+   132  0011                     	;# 
+   133  0012                     	;# 
+   134  0013                     	;# 
+   135  0014                     	;# 
+   136  0015                     	;# 
+   137  0015                     	;# 
+   138  0016                     	;# 
+   139  0017                     	;# 
+   140  0018                     	;# 
+   141  0019                     	;# 
+   142  001A                     	;# 
+   143  001B                     	;# 
+   144  001B                     	;# 
+   145  001C                     	;# 
+   146  001D                     	;# 
+   147  001E                     	;# 
+   148  001F                     	;# 
+   149  0081                     	;# 
+   150  0085                     	;# 
+   151  0086                     	;# 
+   152  0087                     	;# 
+   153  0088                     	;# 
+   154  0089                     	;# 
+   155  008C                     	;# 
+   156  008D                     	;# 
+   157  008E                     	;# 
+   158  0091                     	;# 
+   159  0092                     	;# 
+   160  0093                     	;# 
+   161  0094                     	;# 
+   162  0098                     	;# 
+   163  0099                     	;# 
+   164  009C                     	;# 
+   165  009D                     	;# 
+   166  009E                     	;# 
+   167  009F                     	;# 
+   168  010C                     	;# 
+   169  010D                     	;# 
+   170  010E                     	;# 
+   171  010F                     	;# 
+   172  018C                     	;# 
+   173  018D                     	;# 
+   174  0009                     _PORTE	set	9
+   175  0008                     _PORTD	set	8
+   176  0007                     _PORTC	set	7
+   177  0006                     _PORTB	set	6
+   178  0005                     _PORTA	set	5
+   179  0030                     _RB0	set	48
+   180  0045                     _RD5	set	69
+   181  0044                     _RD4	set	68
+   182  0043                     _RD3	set	67
+   183  0042                     _RD2	set	66
+   184  0041                     _RD1	set	65
+   185  0040                     _RD0	set	64
+   186  0088                     _TRISD	set	136
+   187  0086                     _TRISB	set	134
+   188                           
+   189                           	psect	strings
+   190  0003                     __pstrings:	
+   191  0003                     stringtab:	
+   192  0003                     __stringtab:	
+   193  0003                     stringcode:	
+   194                           ;	String table - string pointers are 1 byte each
+   195                           
+   196  0003                     stringdir:	
+   197  0003  3000               	movlw	high stringdir
+   198  0004  008A               	movwf	10
+   199  0005  0804               	movf	4,w
+   200  0006  0A84               	incf	4,f
+   201  0007  0782               	addwf	2,f
+   202  0008                     __stringbase:	
+   203  0008  3400               	retlw	0
+   204  0009                     __end_of__stringtab:	
+   205  0009                     STR_1:	
+   206  0009  3457               	retlw	87	;'W'
+   207  000A  3465               	retlw	101	;'e'
+   208  000B  346C               	retlw	108	;'l'
+   209  000C  3463               	retlw	99	;'c'
+   210  000D  346F               	retlw	111	;'o'
+   211  000E  3400               	retlw	0
+   212                           
+   213                           ; #config settings
+   214  0000                     
+   215                           	psect	cinit
+   216  07EE                     start_initialization:	
+   217  07EE                     __initialization:	
+   218                           
+   219                           ; Clear objects allocated to COMMON
+   220  07EE  01FC               	clrf	__pbssCOMMON& (0+127)
+   221  07EF  01FD               	clrf	(__pbssCOMMON+1)& (0+127)
+   222                           
+   223                           ; Clear objects allocated to BANK0
+   224  07F0  1283               	bcf	3,5	;RP0=0, select bank0
+   225  07F1  1303               	bcf	3,6	;RP1=0, select bank0
+   226  07F2  01A0               	clrf	__pbssBANK0& (0+127)
+   227  07F3  01A1               	clrf	(__pbssBANK0+1)& (0+127)
+   228  07F4  01A2               	clrf	(__pbssBANK0+2)& (0+127)
+   229  07F5  01A3               	clrf	(__pbssBANK0+3)& (0+127)
+   230  07F6  01A4               	clrf	(__pbssBANK0+4)& (0+127)
+   231  07F7  01A5               	clrf	(__pbssBANK0+5)& (0+127)
+   232  07F8  01A6               	clrf	(__pbssBANK0+6)& (0+127)
+   233  07F9  01A7               	clrf	(__pbssBANK0+7)& (0+127)
+   234  07FA  01A8               	clrf	(__pbssBANK0+8)& (0+127)
+   235  07FB  01A9               	clrf	(__pbssBANK0+9)& (0+127)
+   236  07FC                     end_of_initialization:	
+   237                           ;End of C runtime variable initialization code
+   238                           
+   239  07FC                     __end_of__initialization:	
+   240  07FC  0183               	clrf	3
+   241  07FD  120A  118A  2E99   	ljmp	_main	;jump to C main() function
+   242                           
+   243                           	psect	bssCOMMON
+   244  007C                     __pbssCOMMON:	
+   245  007C                     _sec:	
+   246  007C                     	ds	2
+   247                           
+   248                           	psect	bssBANK0
+   249  0020                     __pbssBANK0:	
+   250  0020                     _year:	
+   251  0020                     	ds	2
+   252  0022                     _month:	
+   253  0022                     	ds	2
+   254  0024                     _date:	
+   255  0024                     	ds	2
+   256  0026                     _hour:	
+   257  0026                     	ds	2
+   258  0028                     _min:	
+   259  0028                     	ds	2
+   260                           
+   261                           	psect	cstackCOMMON
+   262  0070                     __pcstackCOMMON:	
+   263  0070                     ?_Lcd_SetBit:	
+   264  0070                     ??_Lcd_SetBit:	
+   265                           ; 1 bytes @ 0x0
+   266                           
+   267  0070                     ?_Lcd_Cmd:	
+   268                           ; 1 bytes @ 0x0
+   269                           
+   270  0070                     ?_Lcd_Start:	
+   271                           ; 1 bytes @ 0x0
+   272                           
+   273  0070                     ?_Lcd_Print_Char:	
+   274                           ; 1 bytes @ 0x0
+   275                           
+   276  0070                     ?_Lcd_Print_String:	
+   277                           ; 1 bytes @ 0x0
+   278                           
+   279  0070                     ?_main:	
+   280                           ; 1 bytes @ 0x0
+   281                           
+   282  0070                     ?_Lcd_Clear:	
+   283                           ; 1 bytes @ 0x0
+   284                           
+   285  0070                     Lcd_SetBit@data_bit:	
+   286                           ; 2 bytes @ 0x0
+   287                           
+   288                           
+   289                           ; 1 bytes @ 0x0
+   290  0070                     	ds	1
+   291  0071                     ??_Lcd_Cmd:	
+   292  0071                     ??_Lcd_Print_Char:	
+   293                           ; 1 bytes @ 0x1
+   294                           
+   295                           
+   296                           ; 1 bytes @ 0x1
+   297  0071                     	ds	1
+   298  0072                     Lcd_Print_Char@Lower_Nibble:	
+   299                           
+   300                           ; 1 bytes @ 0x2
+   301  0072                     	ds	1
+   302  0073                     Lcd_Cmd@a:	
+   303  0073                     Lcd_Print_Char@Upper_Nibble:	
+   304                           ; 1 bytes @ 0x3
+   305                           
+   306                           
+   307                           ; 1 bytes @ 0x3
+   308  0073                     	ds	1
+   309  0074                     ??_Lcd_Clear:	
+   310  0074                     ?_Lcd_Set_Cursor:	
+   311                           ; 1 bytes @ 0x4
+   312                           
+   313  0074                     ??_Lcd_Start:	
+   314                           ; 1 bytes @ 0x4
+   315                           
+   316  0074                     Lcd_Set_Cursor@b:	
+   317                           ; 1 bytes @ 0x4
+   318                           
+   319  0074                     Lcd_Print_Char@i:	
+   320                           ; 1 bytes @ 0x4
+   321                           
+   322                           
+   323                           ; 2 bytes @ 0x4
+   324  0074                     	ds	1
+   325  0075                     ??_Lcd_Set_Cursor:	
+   326                           
+   327                           ; 1 bytes @ 0x5
+   328  0075                     	ds	1
+   329  0076                     Lcd_Print_Char@i_72:	
+   330                           
+   331                           ; 2 bytes @ 0x6
+   332  0076                     	ds	1
+   333  0077                     Lcd_Set_Cursor@a:	
+   334                           
+   335                           ; 1 bytes @ 0x7
+   336  0077                     	ds	1
+   337  0078                     Lcd_Set_Cursor@z:	
+   338  0078                     Lcd_Print_Char@data:	
+   339                           ; 1 bytes @ 0x8
+   340                           
+   341                           
+   342                           ; 1 bytes @ 0x8
+   343  0078                     	ds	1
+   344  0079                     ??_Lcd_Print_String:	
+   345  0079                     Lcd_Set_Cursor@y:	
+   346                           ; 1 bytes @ 0x9
+   347                           
+   348  0079                     Lcd_Print_String@i:	
+   349                           ; 1 bytes @ 0x9
+   350                           
+   351                           
+   352                           ; 2 bytes @ 0x9
+   353  0079                     	ds	1
+   354  007A                     Lcd_Set_Cursor@temp:	
+   355                           
+   356                           ; 1 bytes @ 0xA
+   357  007A                     	ds	1
+   358  007B                     Lcd_Print_String@a:	
+   359                           
+   360                           ; 1 bytes @ 0xB
+   361  007B                     	ds	1
+   362                           
+   363                           	psect	cstackBANK0
+   364  002A                     __pcstackBANK0:	
+   365  002A                     ??_main:	
+   366                           
+   367                           ; 1 bytes @ 0x0
+   368  002A                     	ds	3
+   369                           
+   370                           	psect	maintext
+   371  0699                     __pmaintext:	
+   372 ;;
+   373 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   374 ;;
+   375 ;; *************** function _main *****************
+   376 ;; Defined at:
+   377 ;;		line 29 in file "smartf.c"
+   378 ;; Parameters:    Size  Location     Type
+   379 ;;		None
+   380 ;; Auto vars:     Size  Location     Type
+   381 ;;		None
+   382 ;; Return value:  Size  Location     Type
+   383 ;;                  1    wreg      void 
+   384 ;; Registers used:
+   385 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   386 ;; Tracked objects:
+   387 ;;		On entry : B00/0
+   388 ;;		On exit  : 0/0
+   389 ;;		Unchanged: 0/0
+   390 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   391 ;;      Params:         0       0       0       0       0
+   392 ;;      Locals:         0       0       0       0       0
+   393 ;;      Temps:          0       3       0       0       0
+   394 ;;      Totals:         0       3       0       0       0
+   395 ;;Total ram usage:        3 bytes
+   396 ;; Hardware stack levels required when called:    3
+   397 ;; This function calls:
+   398 ;;		_Lcd_Clear
+   399 ;;		_Lcd_Print_String
+   400 ;;		_Lcd_Set_Cursor
+   401 ;;		_Lcd_Start
+   402 ;; This function is called by:
+   403 ;;		Startup code after reset
+   404 ;; This function uses a non-reentrant model
+   405 ;;
+   406                           
+   407                           
+   408                           ;psect for function _main
+   409  0699                     _main:	
+   410  0699                     l849:	
+   411                           ;incstack = 0
+   412                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   413                           
+   414                           
+   415                           ;smartf.c: 31:    PORTA = PORTB =PORTC= PORTD = PORTE = 0;
+   416  0699  1283               	bcf	3,5	;RP0=0, select bank0
+   417  069A  1303               	bcf	3,6	;RP1=0, select bank0
+   418  069B  0189               	clrf	9	;volatile
+   419  069C  0188               	clrf	8	;volatile
+   420  069D  0187               	clrf	7	;volatile
+   421  069E  0186               	clrf	6	;volatile
+   422  069F  0185               	clrf	5	;volatile
+   423                           
+   424                           ;smartf.c: 32:      TRISB =0;
+   425  06A0  1683               	bsf	3,5	;RP0=1, select bank1
+   426  06A1  1303               	bcf	3,6	;RP1=0, select bank1
+   427  06A2  0186               	clrf	6	;volatile
+   428                           
+   429                           ;smartf.c: 33:      TRISD = 0;
+   430  06A3  0188               	clrf	8	;volatile
+   431  06A4                     l851:	
+   432                           
+   433                           ;smartf.c: 34:      Lcd_Start();
+   434  06A4  120A  118A  273B  120A  118A  	fcall	_Lcd_Start
+   435  06A9                     l853:	
+   436                           
+   437                           ;smartf.c: 35:     Lcd_Clear();
+   438  06A9  120A  118A  262B  120A  118A  	fcall	_Lcd_Clear
+   439  06AE                     l855:	
+   440                           
+   441                           ;smartf.c: 36:     Lcd_Set_Cursor(1,1);
+   442  06AE  01F4               	clrf	Lcd_Set_Cursor@b
+   443  06AF  0AF4               	incf	Lcd_Set_Cursor@b,f
+   444  06B0  3001               	movlw	1
+   445  06B1  120A  118A  26E9  120A  118A  	fcall	_Lcd_Set_Cursor
+   446  06B6                     l857:	
+   447                           
+   448                           ;smartf.c: 37:      Lcd_Print_String("Welco");
+   449  06B6  3001               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
+   450  06B7  120A  118A  2674  120A  118A  	fcall	_Lcd_Print_String
+   451  06BC                     l859:	
+   452                           
+   453                           ;smartf.c: 39:     Lcd_Clear();
+   454  06BC  120A  118A  262B  120A  118A  	fcall	_Lcd_Clear
+   455  06C1                     l861:	
+   456                           
+   457                           ;smartf.c: 42:     _delay((unsigned long)((1500)*(16000000/4000.0)));
+   458  06C1  301F               	movlw	31
+   459  06C2  1283               	bcf	3,5	;RP0=0, select bank0
+   460  06C3  1303               	bcf	3,6	;RP1=0, select bank0
+   461  06C4  00AC               	movwf	??_main+2
+   462  06C5  3071               	movlw	113
+   463  06C6  00AB               	movwf	??_main+1
+   464  06C7  301D               	movlw	29
+   465  06C8  00AA               	movwf	??_main
+   466  06C9                     u187:	
+   467  06C9  0BAA               	decfsz	??_main,f
+   468  06CA  2EC9               	goto	u187
+   469  06CB  0BAB               	decfsz	??_main+1,f
+   470  06CC  2EC9               	goto	u187
+   471  06CD  0BAC               	decfsz	??_main+2,f
+   472  06CE  2EC9               	goto	u187
+   473  06CF  2ED0               	nop2
+   474  06D0                     l863:	
+   475                           
+   476                           ;smartf.c: 45:         RB0=1;
+   477  06D0  1283               	bcf	3,5	;RP0=0, select bank0
+   478  06D1  1303               	bcf	3,6	;RP1=0, select bank0
+   479  06D2  1406               	bsf	6,0	;volatile
+   480  06D3                     l865:	
+   481                           
+   482                           ;smartf.c: 46:         _delay((unsigned long)((200)*(16000000/4000.0)));
+   483  06D3  3005               	movlw	5
+   484  06D4  1283               	bcf	3,5	;RP0=0, select bank0
+   485  06D5  1303               	bcf	3,6	;RP1=0, select bank0
+   486  06D6  00AC               	movwf	??_main+2
+   487  06D7  300F               	movlw	15
+   488  06D8  00AB               	movwf	??_main+1
+   489  06D9  30F0               	movlw	240
+   490  06DA  00AA               	movwf	??_main
+   491  06DB                     u197:	
+   492  06DB  0BAA               	decfsz	??_main,f
+   493  06DC  2EDB               	goto	u197
+   494  06DD  0BAB               	decfsz	??_main+1,f
+   495  06DE  2EDB               	goto	u197
+   496  06DF  0BAC               	decfsz	??_main+2,f
+   497  06E0  2EDB               	goto	u197
+   498  06E1  0000               	nop
+   499  06E2                     l867:	
+   500                           
+   501                           ;smartf.c: 47:         RB0 = 0;
+   502  06E2  1283               	bcf	3,5	;RP0=0, select bank0
+   503  06E3  1303               	bcf	3,6	;RP1=0, select bank0
+   504  06E4  1006               	bcf	6,0	;volatile
+   505  06E5  2ED0               	goto	l863
+   506  06E6  120A  118A  2800   	ljmp	start
+   507  06E9                     __end_of_main:	
+   508                           
+   509                           	psect	text1
+   510  073B                     __ptext1:	
+   511 ;; *************** function _Lcd_Start *****************
+   512 ;; Defined at:
+   513 ;;		line 75 in file "./lcd.h"
+   514 ;; Parameters:    Size  Location     Type
+   515 ;;		None
+   516 ;; Auto vars:     Size  Location     Type
+   517 ;;  i               2    0        int 
+   518 ;; Return value:  Size  Location     Type
+   519 ;;                  1    wreg      void 
+   520 ;; Registers used:
+   521 ;;		wreg, status,2, status,0, pclath, cstack
+   522 ;; Tracked objects:
+   523 ;;		On entry : 0/0
+   524 ;;		On exit  : 0/0
+   525 ;;		Unchanged: 0/0
+   526 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   527 ;;      Params:         0       0       0       0       0
+   528 ;;      Locals:         2       0       0       0       0
+   529 ;;      Temps:          2       0       0       0       0
+   530 ;;      Totals:         4       0       0       0       0
+   531 ;;Total ram usage:        4 bytes
+   532 ;; Hardware stack levels used:    1
+   533 ;; Hardware stack levels required when called:    2
+   534 ;; This function calls:
+   535 ;;		_Lcd_Cmd
+   536 ;;		_Lcd_SetBit
+   537 ;; This function is called by:
+   538 ;;		_main
+   539 ;; This function uses a non-reentrant model
+   540 ;;
+   541                           
+   542                           
+   543                           ;psect for function _Lcd_Start
+   544  073B                     _Lcd_Start:	
+   545  073B                     l759:	
+   546                           ;incstack = 0
+   547                           ; Regs used in _Lcd_Start: [wreg+status,2+status,0+pclath+cstack]
+   548                           
+   549                           
+   550                           ;./lcd.h: 77:   Lcd_SetBit(0x00);
+   551  073B  3000               	movlw	0
+   552  073C  120A  118A  2652  120A  118A  	fcall	_Lcd_SetBit
+   553  0741                     l761:	
+   554  0741                     l763:	
+   555  0741                     l771:	
+   556                           
+   557                           ;./lcd.h: 79:   Lcd_Cmd(0x03);
+   558  0741  3003               	movlw	3
+   559  0742  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   560  0747                     l773:	
+   561                           
+   562                           ;./lcd.h: 80:     _delay((unsigned long)((5)*(16000000/4000.0)));
+   563  0747  301A               	movlw	26
+   564  0748  00F5               	movwf	??_Lcd_Start+1
+   565  0749  30F8               	movlw	248
+   566  074A  00F4               	movwf	??_Lcd_Start
+   567  074B                     u207:	
+   568  074B  0BF4               	decfsz	??_Lcd_Start,f
+   569  074C  2F4B               	goto	u207
+   570  074D  0BF5               	decfsz	??_Lcd_Start+1,f
+   571  074E  2F4B               	goto	u207
+   572  074F  0000               	nop
+   573  0750                     l775:	
+   574                           
+   575                           ;./lcd.h: 81:   Lcd_Cmd(0x03);
+   576  0750  3003               	movlw	3
+   577  0751  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   578                           
+   579                           ;./lcd.h: 82:     _delay((unsigned long)((11)*(16000000/4000.0)));
+   580  0756  303A               	movlw	58
+   581  0757  00F5               	movwf	??_Lcd_Start+1
+   582  0758  3023               	movlw	35
+   583  0759  00F4               	movwf	??_Lcd_Start
+   584  075A                     u217:	
+   585  075A  0BF4               	decfsz	??_Lcd_Start,f
+   586  075B  2F5A               	goto	u217
+   587  075C  0BF5               	decfsz	??_Lcd_Start+1,f
+   588  075D  2F5A               	goto	u217
+   589  075E                     l777:	
+   590                           
+   591                           ;./lcd.h: 83:   Lcd_Cmd(0x03);
+   592  075E  3003               	movlw	3
+   593  075F  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   594  0764                     l779:	
+   595                           
+   596                           ;./lcd.h: 84:   Lcd_Cmd(0x02);
+   597  0764  3002               	movlw	2
+   598  0765  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   599  076A                     l781:	
+   600                           
+   601                           ;./lcd.h: 85:   Lcd_Cmd(0x02);
+   602  076A  3002               	movlw	2
+   603  076B  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   604  0770                     l783:	
+   605                           
+   606                           ;./lcd.h: 86:   Lcd_Cmd(0x08);
+   607  0770  3008               	movlw	8
+   608  0771  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   609  0776                     l785:	
+   610                           
+   611                           ;./lcd.h: 87:   Lcd_Cmd(0x00);
+   612  0776  3000               	movlw	0
+   613  0777  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   614  077C                     l787:	
+   615                           
+   616                           ;./lcd.h: 88:   Lcd_Cmd(0x0C);
+   617  077C  300C               	movlw	12
+   618  077D  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   619  0782                     l789:	
+   620                           
+   621                           ;./lcd.h: 89:   Lcd_Cmd(0x00);
+   622  0782  3000               	movlw	0
+   623  0783  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   624  0788                     l791:	
+   625                           
+   626                           ;./lcd.h: 90:   Lcd_Cmd(0x06);
+   627  0788  3006               	movlw	6
+   628  0789  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   629  078E                     l72:	
+   630  078E  0008               	return
+   631  078F                     __end_of_Lcd_Start:	
+   632                           
+   633                           	psect	text2
+   634  06E9                     __ptext2:	
+   635 ;; *************** function _Lcd_Set_Cursor *****************
+   636 ;; Defined at:
+   637 ;;		line 54 in file "./lcd.h"
+   638 ;; Parameters:    Size  Location     Type
+   639 ;;  a               1    wreg     unsigned char 
+   640 ;;  b               1    4[COMMON] unsigned char 
+   641 ;; Auto vars:     Size  Location     Type
+   642 ;;  a               1    7[COMMON] unsigned char 
+   643 ;;  temp            1   10[COMMON] unsigned char 
+   644 ;;  y               1    9[COMMON] unsigned char 
+   645 ;;  z               1    8[COMMON] unsigned char 
+   646 ;; Return value:  Size  Location     Type
+   647 ;;                  1    wreg      void 
+   648 ;; Registers used:
+   649 ;;		wreg, status,2, status,0, pclath, cstack
+   650 ;; Tracked objects:
+   651 ;;		On entry : 0/0
+   652 ;;		On exit  : 0/0
+   653 ;;		Unchanged: 0/0
+   654 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   655 ;;      Params:         1       0       0       0       0
+   656 ;;      Locals:         4       0       0       0       0
+   657 ;;      Temps:          2       0       0       0       0
+   658 ;;      Totals:         7       0       0       0       0
+   659 ;;Total ram usage:        7 bytes
+   660 ;; Hardware stack levels used:    1
+   661 ;; Hardware stack levels required when called:    2
+   662 ;; This function calls:
+   663 ;;		_Lcd_Cmd
+   664 ;; This function is called by:
+   665 ;;		_main
+   666 ;; This function uses a non-reentrant model
+   667 ;;
+   668                           
+   669                           
+   670                           ;psect for function _Lcd_Set_Cursor
+   671  06E9                     _Lcd_Set_Cursor:	
+   672                           
+   673                           ;incstack = 0
+   674                           ; Regs used in _Lcd_Set_Cursor: [wreg+status,2+status,0+pclath+cstack]
+   675                           ;Lcd_Set_Cursor@a stored from wreg
+   676  06E9  00F7               	movwf	Lcd_Set_Cursor@a
+   677  06EA                     l821:	
+   678                           
+   679                           ;./lcd.h: 54: void Lcd_Set_Cursor(char a, char b);./lcd.h: 55: {;./lcd.h: 56:     char t
+      +                          emp,z,y;;./lcd.h: 57:     if(a== 1)
+   680  06EA  0377               	decf	Lcd_Set_Cursor@a,w
+   681  06EB  1D03               	btfss	3,2
+   682  06EC  2EEE               	goto	u131
+   683  06ED  2EEF               	goto	u130
+   684  06EE                     u131:	
+   685  06EE  2F12               	goto	l831
+   686  06EF                     u130:	
+   687  06EF                     l823:	
+   688                           
+   689                           ;./lcd.h: 58:     {;./lcd.h: 59:       temp = 0x80 + b - 1;
+   690  06EF  0874               	movf	Lcd_Set_Cursor@b,w
+   691  06F0  3E7F               	addlw	127
+   692  06F1  00F5               	movwf	??_Lcd_Set_Cursor
+   693  06F2  0875               	movf	??_Lcd_Set_Cursor,w
+   694  06F3  00FA               	movwf	Lcd_Set_Cursor@temp
+   695                           
+   696                           ;./lcd.h: 60:         z = temp>>4;
+   697  06F4  087A               	movf	Lcd_Set_Cursor@temp,w
+   698  06F5  00F5               	movwf	??_Lcd_Set_Cursor
+   699  06F6  3004               	movlw	4
+   700  06F7                     u145:	
+   701  06F7  1003               	clrc
+   702  06F8  0CF5               	rrf	??_Lcd_Set_Cursor,f
+   703  06F9  3EFF               	addlw	-1
+   704  06FA  1D03               	skipz
+   705  06FB  2EF7               	goto	u145
+   706  06FC  0875               	movf	??_Lcd_Set_Cursor,w
+   707  06FD  00F6               	movwf	??_Lcd_Set_Cursor+1
+   708  06FE  0876               	movf	??_Lcd_Set_Cursor+1,w
+   709  06FF  00F8               	movwf	Lcd_Set_Cursor@z
+   710  0700                     l825:	
+   711                           
+   712                           ;./lcd.h: 61:         y = temp & 0x0F;
+   713  0700  087A               	movf	Lcd_Set_Cursor@temp,w
+   714  0701  390F               	andlw	15
+   715  0702  00F5               	movwf	??_Lcd_Set_Cursor
+   716  0703  0875               	movf	??_Lcd_Set_Cursor,w
+   717  0704  00F9               	movwf	Lcd_Set_Cursor@y
+   718  0705                     l827:	
+   719                           
+   720                           ;./lcd.h: 62:         Lcd_Cmd(z);
+   721  0705  0878               	movf	Lcd_Set_Cursor@z,w
+   722  0706  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   723  070B                     l829:	
+   724                           
+   725                           ;./lcd.h: 63:         Lcd_Cmd(y);
+   726  070B  0879               	movf	Lcd_Set_Cursor@y,w
+   727  070C  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   728                           
+   729                           ;./lcd.h: 64:     }
+   730  0711  2F3A               	goto	l67
+   731  0712                     l831:	
+   732  0712  3002               	movlw	2
+   733  0713  0677               	xorwf	Lcd_Set_Cursor@a,w
+   734  0714  1D03               	btfss	3,2
+   735  0715  2F17               	goto	u151
+   736  0716  2F18               	goto	u150
+   737  0717                     u151:	
+   738  0717  2F3A               	goto	l67
+   739  0718                     u150:	
+   740  0718                     l833:	
+   741                           
+   742                           ;./lcd.h: 66:     {;./lcd.h: 67:         temp = 0xC0 + b - 1;
+   743  0718  0874               	movf	Lcd_Set_Cursor@b,w
+   744  0719  3EBF               	addlw	191
+   745  071A  00F5               	movwf	??_Lcd_Set_Cursor
+   746  071B  0875               	movf	??_Lcd_Set_Cursor,w
+   747  071C  00FA               	movwf	Lcd_Set_Cursor@temp
+   748                           
+   749                           ;./lcd.h: 68:         z = temp>>4;
+   750  071D  087A               	movf	Lcd_Set_Cursor@temp,w
+   751  071E  00F5               	movwf	??_Lcd_Set_Cursor
+   752  071F  3004               	movlw	4
+   753  0720                     u165:	
+   754  0720  1003               	clrc
+   755  0721  0CF5               	rrf	??_Lcd_Set_Cursor,f
+   756  0722  3EFF               	addlw	-1
+   757  0723  1D03               	skipz
+   758  0724  2F20               	goto	u165
+   759  0725  0875               	movf	??_Lcd_Set_Cursor,w
+   760  0726  00F6               	movwf	??_Lcd_Set_Cursor+1
+   761  0727  0876               	movf	??_Lcd_Set_Cursor+1,w
+   762  0728  00F8               	movwf	Lcd_Set_Cursor@z
+   763  0729                     l835:	
+   764                           
+   765                           ;./lcd.h: 69:         y = temp & 0x0F;
+   766  0729  087A               	movf	Lcd_Set_Cursor@temp,w
+   767  072A  390F               	andlw	15
+   768  072B  00F5               	movwf	??_Lcd_Set_Cursor
+   769  072C  0875               	movf	??_Lcd_Set_Cursor,w
+   770  072D  00F9               	movwf	Lcd_Set_Cursor@y
+   771  072E                     l837:	
+   772                           
+   773                           ;./lcd.h: 70:         Lcd_Cmd(z);
+   774  072E  0878               	movf	Lcd_Set_Cursor@z,w
+   775  072F  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   776  0734                     l839:	
+   777                           
+   778                           ;./lcd.h: 71:         Lcd_Cmd(y);
+   779  0734  0879               	movf	Lcd_Set_Cursor@y,w
+   780  0735  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+   781  073A                     l67:	
+   782  073A  0008               	return
+   783  073B                     __end_of_Lcd_Set_Cursor:	
+   784                           
+   785                           	psect	text3
+   786  0674                     __ptext3:	
+   787 ;; *************** function _Lcd_Print_String *****************
+   788 ;; Defined at:
+   789 ;;		line 109 in file "./lcd.h"
+   790 ;; Parameters:    Size  Location     Type
+   791 ;;  a               1    wreg     PTR unsigned char 
+   792 ;;		 -> STR_1(6), 
+   793 ;; Auto vars:     Size  Location     Type
+   794 ;;  a               1   11[COMMON] PTR unsigned char 
+   795 ;;		 -> STR_1(6), 
+   796 ;;  i               2    9[COMMON] int 
+   797 ;; Return value:  Size  Location     Type
+   798 ;;                  1    wreg      void 
+   799 ;; Registers used:
+   800 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   801 ;; Tracked objects:
+   802 ;;		On entry : 0/0
+   803 ;;		On exit  : 0/0
+   804 ;;		Unchanged: 0/0
+   805 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   806 ;;      Params:         0       0       0       0       0
+   807 ;;      Locals:         3       0       0       0       0
+   808 ;;      Temps:          0       0       0       0       0
+   809 ;;      Totals:         3       0       0       0       0
+   810 ;;Total ram usage:        3 bytes
+   811 ;; Hardware stack levels used:    1
+   812 ;; Hardware stack levels required when called:    2
+   813 ;; This function calls:
+   814 ;;		_Lcd_Print_Char
+   815 ;; This function is called by:
+   816 ;;		_main
+   817 ;; This function uses a non-reentrant model
+   818 ;;
+   819                           
+   820                           
+   821                           ;psect for function _Lcd_Print_String
+   822  0674                     _Lcd_Print_String:	
+   823                           
+   824                           ;incstack = 0
+   825                           ; Regs used in _Lcd_Print_String: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   826                           ;Lcd_Print_String@a stored from wreg
+   827  0674  00FB               	movwf	Lcd_Print_String@a
+   828  0675                     l841:	
+   829                           
+   830                           ;./lcd.h: 109: void Lcd_Print_String(char *a);./lcd.h: 110: {;./lcd.h: 111:     int i;;.
+      +                          /lcd.h: 112:     for(i=0;a[i]!='\0';i++)
+   831  0675  01F9               	clrf	Lcd_Print_String@i
+   832  0676  01FA               	clrf	Lcd_Print_String@i+1
+   833  0677  2E8B               	goto	l847
+   834  0678                     l843:	
+   835                           
+   836                           ;./lcd.h: 113:        Lcd_Print_Char(a[i]);
+   837  0678  0879               	movf	Lcd_Print_String@i,w
+   838  0679  077B               	addwf	Lcd_Print_String@a,w
+   839  067A  0084               	movwf	4
+   840  067B  120A  118A  2003  120A  118A  	fcall	stringdir
+   841  0680  120A  118A  278F  120A  118A  	fcall	_Lcd_Print_Char
+   842  0685                     l845:	
+   843  0685  3001               	movlw	1
+   844  0686  07F9               	addwf	Lcd_Print_String@i,f
+   845  0687  1803               	skipnc
+   846  0688  0AFA               	incf	Lcd_Print_String@i+1,f
+   847  0689  3000               	movlw	0
+   848  068A  07FA               	addwf	Lcd_Print_String@i+1,f
+   849  068B                     l847:	
+   850  068B  0879               	movf	Lcd_Print_String@i,w
+   851  068C  077B               	addwf	Lcd_Print_String@a,w
+   852  068D  0084               	movwf	4
+   853  068E  120A  118A  2003  120A  118A  	fcall	stringdir
+   854  0693  3A00               	xorlw	0
+   855  0694  1D03               	skipz
+   856  0695  2E97               	goto	u171
+   857  0696  2E98               	goto	u170
+   858  0697                     u171:	
+   859  0697  2E78               	goto	l843
+   860  0698                     u170:	
+   861  0698                     l85:	
+   862  0698  0008               	return
+   863  0699                     __end_of_Lcd_Print_String:	
+   864                           
+   865                           	psect	text4
+   866  078F                     __ptext4:	
+   867 ;; *************** function _Lcd_Print_Char *****************
+   868 ;; Defined at:
+   869 ;;		line 93 in file "./lcd.h"
+   870 ;; Parameters:    Size  Location     Type
+   871 ;;  data            1    wreg     unsigned char 
+   872 ;; Auto vars:     Size  Location     Type
+   873 ;;  data            1    8[COMMON] unsigned char 
+   874 ;;  i               2    6[COMMON] int 
+   875 ;;  i               2    4[COMMON] int 
+   876 ;;  Upper_Nibble    1    3[COMMON] unsigned char 
+   877 ;;  Lower_Nibble    1    2[COMMON] unsigned char 
+   878 ;; Return value:  Size  Location     Type
+   879 ;;                  1    wreg      void 
+   880 ;; Registers used:
+   881 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   882 ;; Tracked objects:
+   883 ;;		On entry : 0/0
+   884 ;;		On exit  : 0/0
+   885 ;;		Unchanged: 0/0
+   886 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   887 ;;      Params:         0       0       0       0       0
+   888 ;;      Locals:         7       0       0       0       0
+   889 ;;      Temps:          1       0       0       0       0
+   890 ;;      Totals:         8       0       0       0       0
+   891 ;;Total ram usage:        8 bytes
+   892 ;; Hardware stack levels used:    1
+   893 ;; Hardware stack levels required when called:    1
+   894 ;; This function calls:
+   895 ;;		_Lcd_SetBit
+   896 ;; This function is called by:
+   897 ;;		_Lcd_Print_String
+   898 ;; This function uses a non-reentrant model
+   899 ;;
+   900                           
+   901                           
+   902                           ;psect for function _Lcd_Print_Char
+   903  078F                     _Lcd_Print_Char:	
+   904                           
+   905                           ;incstack = 0
+   906                           ; Regs used in _Lcd_Print_Char: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   907                           ;Lcd_Print_Char@data stored from wreg
+   908  078F  00F8               	movwf	Lcd_Print_Char@data
+   909  0790                     l705:	
+   910                           
+   911                           ;./lcd.h: 93: void Lcd_Print_Char(char data);./lcd.h: 94: {;./lcd.h: 95:    char Lower_N
+      +                          ibble,Upper_Nibble;;./lcd.h: 96:    Lower_Nibble = data&0x0F;
+   912  0790  0878               	movf	Lcd_Print_Char@data,w
+   913  0791  390F               	andlw	15
+   914  0792  00F1               	movwf	??_Lcd_Print_Char
+   915  0793  0871               	movf	??_Lcd_Print_Char,w
+   916  0794  00F2               	movwf	Lcd_Print_Char@Lower_Nibble
+   917                           
+   918                           ;./lcd.h: 97:    Upper_Nibble = data&0xF0;
+   919  0795  0878               	movf	Lcd_Print_Char@data,w
+   920  0796  39F0               	andlw	240
+   921  0797  00F1               	movwf	??_Lcd_Print_Char
+   922  0798  0871               	movf	??_Lcd_Print_Char,w
+   923  0799  00F3               	movwf	Lcd_Print_Char@Upper_Nibble
+   924  079A                     l707:	
+   925                           
+   926                           ;./lcd.h: 98:    RD4 = 1;
+   927  079A  1283               	bcf	3,5	;RP0=0, select bank0
+   928  079B  1303               	bcf	3,6	;RP1=0, select bank0
+   929  079C  1608               	bsf	8,4	;volatile
+   930  079D                     l709:	
+   931                           
+   932                           ;./lcd.h: 99:    Lcd_SetBit(Upper_Nibble>>4);
+   933  079D  0873               	movf	Lcd_Print_Char@Upper_Nibble,w
+   934  079E  00F1               	movwf	??_Lcd_Print_Char
+   935  079F  3004               	movlw	4
+   936  07A0                     u55:	
+   937  07A0  1003               	clrc
+   938  07A1  0CF1               	rrf	??_Lcd_Print_Char,f
+   939  07A2  3EFF               	addlw	-1
+   940  07A3  1D03               	skipz
+   941  07A4  2FA0               	goto	u55
+   942  07A5  0871               	movf	??_Lcd_Print_Char,w
+   943  07A6  120A  118A  2652  120A  118A  	fcall	_Lcd_SetBit
+   944  07AB                     l711:	
+   945                           
+   946                           ;./lcd.h: 100:    RD5 = 1;
+   947  07AB  1283               	bcf	3,5	;RP0=0, select bank0
+   948  07AC  1303               	bcf	3,6	;RP1=0, select bank0
+   949  07AD  1688               	bsf	8,5	;volatile
+   950  07AE                     l713:	
+   951                           
+   952                           ;./lcd.h: 101:    for(int i=2130483; i<=0; i--) __nop();
+   953  07AE  3033               	movlw	51
+   954  07AF  00F4               	movwf	Lcd_Print_Char@i
+   955  07B0  3082               	movlw	130
+   956  07B1  00F5               	movwf	Lcd_Print_Char@i+1
+   957  07B2                     l75:	
+   958  07B2  0000               	nop
+   959  07B3                     l719:	
+   960  07B3  30FF               	movlw	255
+   961  07B4  07F4               	addwf	Lcd_Print_Char@i,f
+   962  07B5  1803               	skipnc
+   963  07B6  0AF5               	incf	Lcd_Print_Char@i+1,f
+   964  07B7  30FF               	movlw	255
+   965  07B8  07F5               	addwf	Lcd_Print_Char@i+1,f
+   966  07B9                     l721:	
+   967  07B9  0875               	movf	Lcd_Print_Char@i+1,w
+   968  07BA  3A80               	xorlw	128
+   969  07BB  00FF               	movwf	btemp+1
+   970  07BC  3080               	movlw	128
+   971  07BD  027F               	subwf	btemp+1,w
+   972  07BE  1D03               	skipz
+   973  07BF  2FC2               	goto	u65
+   974  07C0  3001               	movlw	1
+   975  07C1  0274               	subwf	Lcd_Print_Char@i,w
+   976  07C2                     u65:	
+   977  07C2  1C03               	skipc
+   978  07C3  2FC5               	goto	u61
+   979  07C4  2FC6               	goto	u60
+   980  07C5                     u61:	
+   981  07C5  2FB2               	goto	l75
+   982  07C6                     u60:	
+   983  07C6                     l76:	
+   984                           
+   985                           ;./lcd.h: 102:    RD5 = 0;
+   986  07C6  1283               	bcf	3,5	;RP0=0, select bank0
+   987  07C7  1303               	bcf	3,6	;RP1=0, select bank0
+   988  07C8  1288               	bcf	8,5	;volatile
+   989  07C9                     l723:	
+   990                           
+   991                           ;./lcd.h: 103:    Lcd_SetBit(Lower_Nibble);
+   992  07C9  0872               	movf	Lcd_Print_Char@Lower_Nibble,w
+   993  07CA  120A  118A  2652  120A  118A  	fcall	_Lcd_SetBit
+   994  07CF                     l725:	
+   995                           
+   996                           ;./lcd.h: 104:    RD5 = 1;
+   997  07CF  1283               	bcf	3,5	;RP0=0, select bank0
+   998  07D0  1303               	bcf	3,6	;RP1=0, select bank0
+   999  07D1  1688               	bsf	8,5	;volatile
+  1000  07D2                     l727:	
+  1001                           
+  1002                           ;./lcd.h: 105:    for(int i=2130483; i<=0; i--) __nop();
+  1003  07D2  3033               	movlw	51
+  1004  07D3  00F6               	movwf	Lcd_Print_Char@i_72
+  1005  07D4  3082               	movlw	130
+  1006  07D5  00F7               	movwf	Lcd_Print_Char@i_72+1
+  1007  07D6                     l77:	
+  1008  07D6  0000               	nop
+  1009  07D7                     l733:	
+  1010  07D7  30FF               	movlw	255
+  1011  07D8  07F6               	addwf	Lcd_Print_Char@i_72,f
+  1012  07D9  1803               	skipnc
+  1013  07DA  0AF7               	incf	Lcd_Print_Char@i_72+1,f
+  1014  07DB  30FF               	movlw	255
+  1015  07DC  07F7               	addwf	Lcd_Print_Char@i_72+1,f
+  1016  07DD                     l735:	
+  1017  07DD  0877               	movf	Lcd_Print_Char@i_72+1,w
+  1018  07DE  3A80               	xorlw	128
+  1019  07DF  00FF               	movwf	btemp+1
+  1020  07E0  3080               	movlw	128
+  1021  07E1  027F               	subwf	btemp+1,w
+  1022  07E2  1D03               	skipz
+  1023  07E3  2FE6               	goto	u75
+  1024  07E4  3001               	movlw	1
+  1025  07E5  0276               	subwf	Lcd_Print_Char@i_72,w
+  1026  07E6                     u75:	
+  1027  07E6  1C03               	skipc
+  1028  07E7  2FE9               	goto	u71
+  1029  07E8  2FEA               	goto	u70
+  1030  07E9                     u71:	
+  1031  07E9  2FD6               	goto	l77
+  1032  07EA                     u70:	
+  1033  07EA                     l78:	
+  1034                           
+  1035                           ;./lcd.h: 106:    RD5 = 0;
+  1036  07EA  1283               	bcf	3,5	;RP0=0, select bank0
+  1037  07EB  1303               	bcf	3,6	;RP1=0, select bank0
+  1038  07EC  1288               	bcf	8,5	;volatile
+  1039  07ED                     l79:	
+  1040  07ED  0008               	return
+  1041  07EE                     __end_of_Lcd_Print_Char:	
+  1042                           
+  1043                           	psect	text5
+  1044  062B                     __ptext5:	
+  1045 ;; *************** function _Lcd_Clear *****************
+  1046 ;; Defined at:
+  1047 ;;		line 48 in file "./lcd.h"
+  1048 ;; Parameters:    Size  Location     Type
+  1049 ;;		None
+  1050 ;; Auto vars:     Size  Location     Type
+  1051 ;;		None
+  1052 ;; Return value:  Size  Location     Type
+  1053 ;;                  2   60[None  ] int 
+  1054 ;; Registers used:
+  1055 ;;		wreg, status,2, status,0, pclath, cstack
+  1056 ;; Tracked objects:
+  1057 ;;		On entry : 0/0
+  1058 ;;		On exit  : 0/0
+  1059 ;;		Unchanged: 0/0
+  1060 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1061 ;;      Params:         0       0       0       0       0
+  1062 ;;      Locals:         0       0       0       0       0
+  1063 ;;      Temps:          0       0       0       0       0
+  1064 ;;      Totals:         0       0       0       0       0
+  1065 ;;Total ram usage:        0 bytes
+  1066 ;; Hardware stack levels used:    1
+  1067 ;; Hardware stack levels required when called:    2
+  1068 ;; This function calls:
+  1069 ;;		_Lcd_Cmd
+  1070 ;; This function is called by:
+  1071 ;;		_main
+  1072 ;; This function uses a non-reentrant model
+  1073 ;;
+  1074                           
+  1075                           
+  1076                           ;psect for function _Lcd_Clear
+  1077  062B                     _Lcd_Clear:	
+  1078  062B                     l737:	
+  1079                           ;incstack = 0
+  1080                           ; Regs used in _Lcd_Clear: [wreg+status,2+status,0+pclath+cstack]
+  1081                           
+  1082                           
+  1083                           ;./lcd.h: 50:     Lcd_Cmd(0);
+  1084  062B  3000               	movlw	0
+  1085  062C  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+  1086                           
+  1087                           ;./lcd.h: 51:     Lcd_Cmd(1);
+  1088  0631  3001               	movlw	1
+  1089  0632  120A  118A  2638  120A  118A  	fcall	_Lcd_Cmd
+  1090  0637                     l61:	
+  1091  0637  0008               	return
+  1092  0638                     __end_of_Lcd_Clear:	
+  1093                           
+  1094                           	psect	text6
+  1095  0638                     __ptext6:	
+  1096 ;; *************** function _Lcd_Cmd *****************
+  1097 ;; Defined at:
+  1098 ;;		line 39 in file "./lcd.h"
+  1099 ;; Parameters:    Size  Location     Type
+  1100 ;;  a               1    wreg     unsigned char 
+  1101 ;; Auto vars:     Size  Location     Type
+  1102 ;;  a               1    3[COMMON] unsigned char 
+  1103 ;; Return value:  Size  Location     Type
+  1104 ;;                  1    wreg      void 
+  1105 ;; Registers used:
+  1106 ;;		wreg, status,2, status,0, pclath, cstack
+  1107 ;; Tracked objects:
+  1108 ;;		On entry : 0/0
+  1109 ;;		On exit  : 0/0
+  1110 ;;		Unchanged: 0/0
+  1111 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1112 ;;      Params:         0       0       0       0       0
+  1113 ;;      Locals:         1       0       0       0       0
+  1114 ;;      Temps:          2       0       0       0       0
+  1115 ;;      Totals:         3       0       0       0       0
+  1116 ;;Total ram usage:        3 bytes
+  1117 ;; Hardware stack levels used:    1
+  1118 ;; Hardware stack levels required when called:    1
+  1119 ;; This function calls:
+  1120 ;;		_Lcd_SetBit
+  1121 ;; This function is called by:
+  1122 ;;		_Lcd_Clear
+  1123 ;;		_Lcd_Set_Cursor
+  1124 ;;		_Lcd_Start
+  1125 ;; This function uses a non-reentrant model
+  1126 ;;
+  1127                           
+  1128                           
+  1129                           ;psect for function _Lcd_Cmd
+  1130  0638                     _Lcd_Cmd:	
+  1131                           
+  1132                           ;incstack = 0
+  1133                           ; Regs used in _Lcd_Cmd: [wreg+status,2+status,0+pclath+cstack]
+  1134                           ;Lcd_Cmd@a stored from wreg
+  1135  0638  00F3               	movwf	Lcd_Cmd@a
+  1136  0639                     l695:	
+  1137                           
+  1138                           ;./lcd.h: 39: void Lcd_Cmd(char a);./lcd.h: 40: {;./lcd.h: 41:     RD4 = 0;
+  1139  0639  1283               	bcf	3,5	;RP0=0, select bank0
+  1140  063A  1303               	bcf	3,6	;RP1=0, select bank0
+  1141  063B  1208               	bcf	8,4	;volatile
+  1142  063C                     l697:	
+  1143                           
+  1144                           ;./lcd.h: 42:     Lcd_SetBit(a);
+  1145  063C  0873               	movf	Lcd_Cmd@a,w
+  1146  063D  120A  118A  2652  120A  118A  	fcall	_Lcd_SetBit
+  1147  0642                     l699:	
+  1148                           
+  1149                           ;./lcd.h: 43:     RD5 = 1;
+  1150  0642  1283               	bcf	3,5	;RP0=0, select bank0
+  1151  0643  1303               	bcf	3,6	;RP1=0, select bank0
+  1152  0644  1688               	bsf	8,5	;volatile
+  1153  0645                     l701:	
+  1154                           
+  1155                           ;./lcd.h: 44:         _delay((unsigned long)((4)*(16000000/4000.0)));
+  1156  0645  3015               	movlw	21
+  1157  0646  00F2               	movwf	??_Lcd_Cmd+1
+  1158  0647  30C6               	movlw	198
+  1159  0648  00F1               	movwf	??_Lcd_Cmd
+  1160  0649                     u227:	
+  1161  0649  0BF1               	decfsz	??_Lcd_Cmd,f
+  1162  064A  2E49               	goto	u227
+  1163  064B  0BF2               	decfsz	??_Lcd_Cmd+1,f
+  1164  064C  2E49               	goto	u227
+  1165  064D  0000               	nop
+  1166  064E                     l703:	
+  1167                           
+  1168                           ;./lcd.h: 45:         RD5 = 0;
+  1169  064E  1283               	bcf	3,5	;RP0=0, select bank0
+  1170  064F  1303               	bcf	3,6	;RP1=0, select bank0
+  1171  0650  1288               	bcf	8,5	;volatile
+  1172  0651                     l58:	
+  1173  0651  0008               	return
+  1174  0652                     __end_of_Lcd_Cmd:	
+  1175                           
+  1176                           	psect	text7
+  1177  0652                     __ptext7:	
+  1178 ;; *************** function _Lcd_SetBit *****************
+  1179 ;; Defined at:
+  1180 ;;		line 16 in file "./lcd.h"
+  1181 ;; Parameters:    Size  Location     Type
+  1182 ;;  data_bit        1    wreg     unsigned char 
+  1183 ;; Auto vars:     Size  Location     Type
+  1184 ;;  data_bit        1    0[COMMON] unsigned char 
+  1185 ;; Return value:  Size  Location     Type
+  1186 ;;                  1    wreg      void 
+  1187 ;; Registers used:
+  1188 ;;		wreg
+  1189 ;; Tracked objects:
+  1190 ;;		On entry : 0/0
+  1191 ;;		On exit  : 0/0
+  1192 ;;		Unchanged: 0/0
+  1193 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1194 ;;      Params:         0       0       0       0       0
+  1195 ;;      Locals:         1       0       0       0       0
+  1196 ;;      Temps:          0       0       0       0       0
+  1197 ;;      Totals:         1       0       0       0       0
+  1198 ;;Total ram usage:        1 bytes
+  1199 ;; Hardware stack levels used:    1
+  1200 ;; This function calls:
+  1201 ;;		Nothing
+  1202 ;; This function is called by:
+  1203 ;;		_Lcd_Cmd
+  1204 ;;		_Lcd_Start
+  1205 ;;		_Lcd_Print_Char
+  1206 ;; This function uses a non-reentrant model
+  1207 ;;
+  1208                           
+  1209                           
+  1210                           ;psect for function _Lcd_SetBit
+  1211  0652                     _Lcd_SetBit:	
+  1212                           
+  1213                           ;incstack = 0
+  1214                           ; Regs used in _Lcd_SetBit: [wreg]
+  1215                           ;Lcd_SetBit@data_bit stored from wreg
+  1216  0652  00F0               	movwf	Lcd_SetBit@data_bit
+  1217  0653                     l685:	
+  1218                           
+  1219                           ;./lcd.h: 16: void Lcd_SetBit(char data_bit);./lcd.h: 17: {;./lcd.h: 18:     if(data_bit
+      +                          & 1)
+  1220  0653  1C70               	btfss	Lcd_SetBit@data_bit,0
+  1221  0654  2E56               	goto	u11
+  1222  0655  2E57               	goto	u10
+  1223  0656                     u11:	
+  1224  0656  2E5B               	goto	l47
+  1225  0657                     u10:	
+  1226  0657                     l687:	
+  1227                           
+  1228                           ;./lcd.h: 19:         RD0 = 1;
+  1229  0657  1283               	bcf	3,5	;RP0=0, select bank0
+  1230  0658  1303               	bcf	3,6	;RP1=0, select bank0
+  1231  0659  1408               	bsf	8,0	;volatile
+  1232  065A  2E5E               	goto	l48
+  1233  065B                     l47:	
+  1234                           ;./lcd.h: 20:     else
+  1235                           
+  1236                           
+  1237                           ;./lcd.h: 21:         RD0 = 0;
+  1238  065B  1283               	bcf	3,5	;RP0=0, select bank0
+  1239  065C  1303               	bcf	3,6	;RP1=0, select bank0
+  1240  065D  1008               	bcf	8,0	;volatile
+  1241  065E                     l48:	
+  1242                           
+  1243                           ;./lcd.h: 23:     if(data_bit& 2)
+  1244  065E  1CF0               	btfss	Lcd_SetBit@data_bit,1
+  1245  065F  2E61               	goto	u21
+  1246  0660  2E62               	goto	u20
+  1247  0661                     u21:	
+  1248  0661  2E64               	goto	l49
+  1249  0662                     u20:	
+  1250  0662                     l689:	
+  1251                           
+  1252                           ;./lcd.h: 24:         RD1 = 1;
+  1253  0662  1488               	bsf	8,1	;volatile
+  1254  0663  2E65               	goto	l50
+  1255  0664                     l49:	
+  1256                           ;./lcd.h: 25:     else
+  1257                           
+  1258                           
+  1259                           ;./lcd.h: 26:         RD1 = 0;
+  1260  0664  1088               	bcf	8,1	;volatile
+  1261  0665                     l50:	
+  1262                           
+  1263                           ;./lcd.h: 28:     if(data_bit& 4)
+  1264  0665  1D70               	btfss	Lcd_SetBit@data_bit,2
+  1265  0666  2E68               	goto	u31
+  1266  0667  2E69               	goto	u30
+  1267  0668                     u31:	
+  1268  0668  2E6B               	goto	l51
+  1269  0669                     u30:	
+  1270  0669                     l691:	
+  1271                           
+  1272                           ;./lcd.h: 29:         RD2 = 1;
+  1273  0669  1508               	bsf	8,2	;volatile
+  1274  066A  2E6C               	goto	l52
+  1275  066B                     l51:	
+  1276                           ;./lcd.h: 30:     else
+  1277                           
+  1278                           
+  1279                           ;./lcd.h: 31:         RD2 = 0;
+  1280  066B  1108               	bcf	8,2	;volatile
+  1281  066C                     l52:	
+  1282                           
+  1283                           ;./lcd.h: 33:     if(data_bit& 8)
+  1284  066C  1DF0               	btfss	Lcd_SetBit@data_bit,3
+  1285  066D  2E6F               	goto	u41
+  1286  066E  2E70               	goto	u40
+  1287  066F                     u41:	
+  1288  066F  2E72               	goto	l53
+  1289  0670                     u40:	
+  1290  0670                     l693:	
+  1291                           
+  1292                           ;./lcd.h: 34:         RD3 = 1;
+  1293  0670  1588               	bsf	8,3	;volatile
+  1294  0671  2E73               	goto	l55
+  1295  0672                     l53:	
+  1296                           ;./lcd.h: 35:     else
+  1297                           
+  1298                           
+  1299                           ;./lcd.h: 36:         RD3 = 0;
+  1300  0672  1188               	bcf	8,3	;volatile
+  1301  0673                     l55:	
+  1302  0673  0008               	return
+  1303  0674                     __end_of_Lcd_SetBit:	
+  1304  007E                     btemp	set	126	;btemp
+  1305  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     6
+    Constant    0
+    Data        0
+    BSS         12
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     12      14
+    BANK0            80      3      13
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    Lcd_Print_String@a	PTR unsigned char  size(1) Largest target is 6
+		 -> STR_1(CODE[6]), 
+
+
+Critical Paths under _main in COMMON
+
+    _main->_Lcd_Print_String
+    _Lcd_Start->_Lcd_Cmd
+    _Lcd_Set_Cursor->_Lcd_Cmd
+    _Lcd_Print_String->_Lcd_Print_Char
+    _Lcd_Print_Char->_Lcd_SetBit
+    _Lcd_Clear->_Lcd_Cmd
+    _Lcd_Cmd->_Lcd_SetBit
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 3     3      0     964
+                                              0 BANK0      3     3      0
+                          _Lcd_Clear
+                   _Lcd_Print_String
+                     _Lcd_Set_Cursor
+                          _Lcd_Start
+ ---------------------------------------------------------------------------------
+ (1) _Lcd_Start                                            4     4      0     165
+                                              4 COMMON     4     4      0
+                            _Lcd_Cmd
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (1) _Lcd_Set_Cursor                                       7     6      1     421
+                                              4 COMMON     7     6      1
+                            _Lcd_Cmd
+ ---------------------------------------------------------------------------------
+ (1) _Lcd_Print_String                                     3     3      0     303
+                                              9 COMMON     3     3      0
+                     _Lcd_Print_Char
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_Print_Char                                       8     8      0     180
+                                              1 COMMON     8     8      0
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (1) _Lcd_Clear                                            0     0      0      75
+                            _Lcd_Cmd
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_Cmd                                              3     3      0      75
+                                              1 COMMON     3     3      0
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_SetBit                                           1     1      0      60
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Lcd_Clear
+     _Lcd_Cmd
+       _Lcd_SetBit
+   _Lcd_Print_String
+     _Lcd_Print_Char
+       _Lcd_SetBit
+   _Lcd_Set_Cursor
+     _Lcd_Cmd
+       _Lcd_SetBit
+   _Lcd_Start
+     _Lcd_Cmd
+       _Lcd_SetBit
+     _Lcd_SetBit
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      C       E       1      100.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0      1B       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      3       D       5       16.3%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0      1B      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Sun Jun 06 22:06:47 2021
+
+                         pc 0002                 __CFG_CP$OFF 0000                          l50 0665  
+                        l51 066B                          l52 066C                          l53 0672  
+                        l61 0637                          l55 0673                          l47 065B  
+                        l48 065E                          l72 078E                          l49 0664  
+                        l58 0651                          l75 07B2                          l67 073A  
+                        l76 07C6                          l77 07D6                          l85 0698  
+                        l78 07EA                          l79 07ED                          u10 0657  
+                        u11 0656                          u20 0662                          u21 0661  
+                        u30 0669                          u31 0668                          u40 0670  
+                        u41 066F                          u60 07C6                          u61 07C5  
+                        u70 07EA                          u71 07E9                          u55 07A0  
+                        u65 07C2                          u75 07E6                          fsr 0004  
+                       l701 0645                         l703 064E                         l711 07AB  
+                       l721 07B9                         l713 07AE                         l705 0790  
+                       l723 07C9                         l707 079A                         l733 07D7  
+                       l725 07CF                         l709 079D                         l821 06EA  
+                       l735 07DD                         l727 07D2                         l719 07B3  
+                       l823 06EF                         l831 0712                         l737 062B  
+                       l841 0675                         l833 0718                         l825 0700  
+                       l761 0741                         l691 0669                         l843 0678  
+                       l835 0729                         l827 0705                         l771 0741  
+                       l763 0741                         l851 06A4                         l693 0670  
+                       l685 0653                         l845 0685                         l837 072E  
+                       l829 070B                         l781 076A                         l773 0747  
+                       l861 06C1                         l853 06A9                         l687 0657  
+                       l695 0639                         l847 068B                         l839 0734  
+                       l791 0788                         l783 0770                         l775 0750  
+                       l759 073B                         l863 06D0                         l855 06AE  
+                       l689 0662                         l697 063C                         l785 0776  
+                       l777 075E                         l865 06D3                         l857 06B6  
+                       l849 0699                         l699 0642                         l787 077C  
+                       l779 0764                         l867 06E2                         l859 06BC  
+                       l789 0782                         _RB0 0030                         _RD0 0040  
+                       _RD1 0041                         _RD2 0042                         _RD3 0043  
+                       _RD4 0044                         _RD5 0045                         u130 06EF  
+                       u131 06EE                         u150 0718                         u151 0717  
+                       u207 074B                         u145 06F7                         u217 075A  
+                       u170 0698                         u227 0649                         u171 0697  
+                       u165 0720                __CFG_CPD$OFF 0000                         u187 06C9  
+                       u197 06DB                         _min 0028                         _sec 007C  
+                       fsr0 0004                __CFG_FOSC$HS 0000                __CFG_LVP$OFF 0000  
+                      STR_1 0009                __CFG_WRT$OFF 0000                        _date 0024  
+                      _main 0699                        _hour 0026                        _year 0020  
+                      btemp 007E                        start 0000          Lcd_Print_Char@i_72 0076  
+        Lcd_Print_Char@data 0078             __end_of_Lcd_Cmd 0652                  _Lcd_SetBit 0652  
+                     ?_main 0070               __CFG_WDTE$OFF 0000                       _PORTA 0005  
+                     _PORTB 0006                       _PORTC 0007                       _PORTD 0008  
+                     _PORTE 0009     __size_of_Lcd_Set_Cursor 0052                       _TRISB 0086  
+                     _TRISD 0088                       _month 0022              __CFG_BOREN$OFF 0000  
+                     pclath 000A   __size_of_Lcd_Print_String 0025                       status 0003  
+                     wtemp0 007E     __size_of_Lcd_Print_Char 005F             __initialization 07EE  
+              __end_of_main 06E9                      ??_main 002A          __size_of_Lcd_Clear 000D  
+        __size_of_Lcd_Start 0054                   ??_Lcd_Cmd 0071              __CFG_PWRTE$OFF 0000  
+               ?_Lcd_SetBit 0070             Lcd_Set_Cursor@a 0077             Lcd_Set_Cursor@b 0074  
+           Lcd_Set_Cursor@y 0079             Lcd_Set_Cursor@z 0078     __end_of__initialization 07FC  
+         __end_of_Lcd_Clear 0638           __end_of_Lcd_Start 078F              __pcstackCOMMON 0070  
+            _Lcd_Set_Cursor 06E9                  __pbssBANK0 0020            _Lcd_Print_String 0674  
+       __size_of_Lcd_SetBit 0022              _Lcd_Print_Char 078F                  __pmaintext 0699  
+        Lcd_SetBit@data_bit 0070      __end_of_Lcd_Set_Cursor 073B                  __stringtab 0003  
+           Lcd_Print_Char@i 0074                     _Lcd_Cmd 0638      __end_of_Lcd_Print_Char 07EE  
+           ?_Lcd_Set_Cursor 0074                     __ptext1 073B                     __ptext2 06E9  
+                   __ptext3 0674                     __ptext4 078F                     __ptext5 062B  
+                   __ptext6 0638                     __ptext7 0652        end_of_initialization 07FC  
+           ?_Lcd_Print_Char 0070                ??_Lcd_SetBit 0070          __end_of_Lcd_SetBit 0674  
+                 _Lcd_Clear 062B                   _Lcd_Start 073B    __end_of_Lcd_Print_String 0699  
+       start_initialization 07EE           Lcd_Print_String@a 007B           Lcd_Print_String@i 0079  
+                ?_Lcd_Clear 0070                  ?_Lcd_Start 0070  Lcd_Print_Char@Lower_Nibble 0072  
+               __pbssCOMMON 007C                   ___latbits 0002               __pcstackBANK0 002A  
+                  ?_Lcd_Cmd 0070            ??_Lcd_Set_Cursor 0075                   __pstrings 0003  
+          ??_Lcd_Print_Char 0071                    Lcd_Cmd@a 0073                 ??_Lcd_Clear 0074  
+               ??_Lcd_Start 0074                 __stringbase 0008            __size_of_Lcd_Cmd 001A  
+        __end_of__stringtab 0009           ?_Lcd_Print_String 0070          ??_Lcd_Print_String 0079  
+             __size_of_main 0050  Lcd_Print_Char@Upper_Nibble 0073                   stringcode 0003  
+        Lcd_Set_Cursor@temp 007A                    stringdir 0003                    stringtab 0003  
